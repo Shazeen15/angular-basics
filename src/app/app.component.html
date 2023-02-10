@@ -1,1 +1,12 @@
-<p>Hello SHAZEEN ANGULAR!</p>
+<!-- event binding ()-->
+<input type="text" (keyup)="changeImage($event)" [value]="imgUrl">
+
+<!-- property binding []-->
+<img [src]="imgUrl" alt="dog picture">
+
+<p>Hello {{ name.toUpperCase() }}!</p>
+<!-- interpolating -->
+<p>Hello {{ getName().toLocaleLowerCase() }}!</p>
+
+<p>{{ 15 + 16}}</p>
+
