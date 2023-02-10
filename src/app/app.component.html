@@ -1,8 +1,11 @@
 <!-- event binding ()-->
 <input type="text" (keyup)="changeImage($event)" [value]="imgUrl">
 
-<!-- property binding []-->
-<img [src]="imgUrl" alt="dog picture">
+<!-- custom components -->
+<app-post [img]="imgUrl" (imgSelected)="logImg($event)">
+    <p>some content</p>
+    <p>ng-content</p>
+</app-post>
 
 <p>Hello {{ name.toUpperCase() }}!</p>
 <!-- interpolating -->
