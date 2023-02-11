@@ -1,15 +1,46 @@
+<!-- attribute directives: [ngClass], [ngStyle]-->
+<button
+  (click)="blueClass = !blueClass"
+  [ngClass]="{ blue: blueClass }"
+  [ngStyle]="{ 'font-size.px': fontSize }"
+>
+  Change color
+</button>
+
+<!-- structural directives: [ngIf] *ngIf -->
+<ng-template [ngIf]="blueClass">
+  <p>button is blue.</p>
+</ng-template>
+
+<p *ngIf="blueClass">button is blue.</p>
+<hr />
+
 <!-- event binding ()-->
-<input type="text" (keyup)="changeImage($event)" [value]="imgUrl">
+<input type="text" (keyup)="changeImage($event)" [value]="imgUrl" />
 
 <!-- custom components -->
-<app-post [img]="imgUrl" (imgSelected)="logImg($event)">
-    <p>some content</p>
-    <p>ng-content</p>
+<app-post
+  *ngFor="let image of images; let i = index"
+  [img]="image"
+  (imgSelected)="logImg($event)"
+>
+  <p>{{ i + 1 }} ng-content</p>
 </app-post>
 
-<p>Hello {{ name.toUpperCase() }}!</p>
+<!-- titlecase: pipe -->
+<p [ngClass]="{ blue: blueClass }">Hello {{ name | titlecase }}!</p>
 <!-- interpolating -->
-<p>Hello {{ getName().toLocaleLowerCase() }}!</p>
+<p>Hello {{ getName() | titlecase }}!</p>
 
-<p>{{ 15 + 16}}</p>
+<p>{{ 15 + 16 }}</p>
 
+<!-- date: pipe "mm/dd/yyyy" "MMM d YYYY" "shortDate" "mediumDate"-->
+<p>{{ currentDate | date : "fullDate" }}</p>
+
+<p>{{ cost | currency : "JPY" }}</p>
+
+<p>{{ temperature | number : "1.0-0" }}</p>
+<p>{{ temperature | number : "1.2-5" }}</p>
+
+<!-- json: for debugging only -->
+<pre>{{ pizza | json }}</pre>
